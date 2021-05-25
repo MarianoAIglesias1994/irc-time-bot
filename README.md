@@ -33,9 +33,9 @@ To get started with the source code, please run the following steps:
 
    - Open your terminal and move to your desired folder to contain the project, then execute:
 
-     `$ git clone REPO`
+     `$ git clone https://github.com/MarianoAIglesias1994/irc-time-bot.git`
 
-2. Move into the folder: `$ cd irc-time-bot`
+2. Move into the folder: `$ cd irc-time-bot/`
 3. Run npm install: `$ npm install`
 
 ### 🏃‍♂️ Executing
