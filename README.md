@@ -107,7 +107,7 @@ const bot = require("irc-time-bot");
 bot.start();
 ```
 
-Remember to include the `.env` file at project root level.
+Remember to include the `.env` file at project root level. This time, the app data will be stored under the `node_modules/irc-time-bot/src/storage/` folder.
 
 ### 🏭 Architecture
 
