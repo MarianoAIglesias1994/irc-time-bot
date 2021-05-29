@@ -47,19 +47,14 @@ function addChild(list, timezone, parent, child) {
 
 function updateNodes(list, timezone) {
   const child = getChild(timezone);
+  const baseNode = timezone.split("/")[0];
   if (typeof child != "undefined") {
+    list.some((i) => (i.timezone === baseNode ? i.count++ : null));
     list.some((i) =>
-      i.timezone === timezone.split("/")[0] ? i.count++ : null
-    );
-    list.some((i) =>
-      i.timezone === timezone.split("/")[0]
-        ? updateNodes(i.children, child)
-        : null
+      i.timezone === baseNode ? updateNodes(i.children, child) : null
     );
   } else {
-    list.some((i) =>
-      i.timezone === timezone.split("/")[0] ? i.count++ : null
-    );
+    list.some((i) => (i.timezone === baseNode ? i.count++ : null));
   }
 }
 
@@ -93,10 +88,8 @@ exports.addOperationByTimezone = function (timezone) {
     };
     const parent = getParent(timezone);
     addChild(json, timezone, parent, child);
-    updateNodes(json, timezone);
-  } else {
-    updateNodes(json, timezone);
   }
+  updateNodes(json, timezone);
   fs.writeFileSync(__dirname + process.env.STORAGE_FILE, JSON.stringify(json));
 };
 

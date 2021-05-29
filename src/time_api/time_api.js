@@ -1,9 +1,16 @@
+const cacheAdapter = require("axios-cache-adapter");
 require("dotenv").config();
 const constants = require("../bot_manager/constants");
 const _axios = require("axios");
 const axiosRetry = require("axios-retry");
 
-const axios = _axios.create();
+const cache = cacheAdapter.setupCache({
+  maxAge: 15 * 60 * 1000,
+});
+
+const axios = _axios.create({
+  adapter: cache.adapter,
+});
 
 const retryDelay = (retryNumber = 0) => {
   const seconds = Math.pow(2, retryNumber) * 1000;
@@ -22,9 +29,20 @@ buildApiRequest = function (timezone) {
   return process.env.TIME_API + process.env.TIME_API_ENDPOINT + timezone;
 };
 
+function getMinutesRemainder() {
+  const d = new Date();
+  const n = d.getMinutes();
+  return 60 - n;
+}
+
 callApi = async function (url) {
   try {
-    const response = await axios.get(url);
+    const response = await axios.get(url, {
+      cache: {
+        maxAge: getMinutesRemainder() * 60 * 1000,
+        exclude: { query: false },
+      },
+    });
     const data = await response.data;
     if (Array.isArray(data)) {
       return {
