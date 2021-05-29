@@ -2,7 +2,7 @@
 
 An IRC Timebot for Freenode 🌿
 
-## Description
+## 📚 Description
 
 This project consists of a basic NodeJS prototype for the backend portions of a chatbot that could be called form an [IRC](https://en.wikipedia.org/wiki/Internet_Relay_Chat) channel.
 For the time being, it only manages these two commands:
@@ -15,6 +15,8 @@ To persist popularity data across restarts of the bot application, a simple JSON
 In addition, it can be integrated into an actual [Freenode](https://freenode.net/) IRC server.
 
 Finally, the project is bundled into a simple reusable [NPM package](#📦-Using-the-bot-as-an-NPM-package) to invoke the bot.
+
+In [this presentation](https://docs.google.com/presentation/d/1jG7fV7fZlkpp3yjdVgCYtKClUTfEFrdzgVqyUr03Oo0/edit?usp=sharing) you can see a little bit about the project.
 
 ## 🌅 Getting Started
 
